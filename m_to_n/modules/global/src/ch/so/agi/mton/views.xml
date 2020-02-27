@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+
+    <view entity="mton_Pet" name="pet-with-memberships" extends="_local">
+        <property name="insuranceMemberships" view="_minimal">
+            <property name="validFrom"/>
+            <property name="validUntil"/>
+            <property name="insuranceCompany" view="_minimal"/>
+        </property>
+    </view>
+    <view entity="mton_InsuranceCompany" name="company-with-memberships" extends="_local">
+        <property name="memberships" view="_minimal">
+            <property name="validFrom"/>
+            <property name="validUntil"/>
+            <property name="pet" view="_minimal"/>
+        </property>
+    </view>
+</views>

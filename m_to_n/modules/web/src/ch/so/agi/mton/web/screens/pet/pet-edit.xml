@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="ch.so.agi.mton.web.screens.pet">
+    <data>
+        <instance id="petDc"
+                  class="ch.so.agi.mton.entity.Pet"
+                  view="pet-with-memberships">
+            <loader/>
+            <collection id="insuranceMembershipsDc" property="insuranceMemberships"/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="petDc">
+            <column width="250px">
+                <textField id="nameField" property="name"/>
+            </column>
+        </form>
+        <groupBox id="insuranceMembershipsBox" caption="msg://ch.so.agi.mton.entity/Pet.insuranceMemberships">
+            <table id="insuranceMembershipsTable" dataContainer="insuranceMembershipsDc" width="100%" height="200px">
+                <actions>
+                    <action id="create" type="create"/>
+                    <action id="edit" type="edit"/>
+                    <action id="remove" type="remove"/>
+                </actions>
+                <columns>
+                    <column id="insuranceCompany"/>
+                    <column id="validFrom"/>
+                    <column id="validUntil"/>
+                </columns>
+                <buttonsPanel align="BOTTOM_LEFT">
+                    <button action="insuranceMembershipsTable.create"/>
+                    <button action="insuranceMembershipsTable.edit"/>
+                    <button action="insuranceMembershipsTable.remove"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose" caption="Speichern und schliessen" stylename="primary"/>
+            <button action="windowClose" caption="Ohne speichern schliessen" stylename="danger"/>
+        </hbox>
+    </layout>
+</window>

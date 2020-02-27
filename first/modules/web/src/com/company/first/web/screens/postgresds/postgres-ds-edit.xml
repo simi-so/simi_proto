@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.first.web.screens.postgresds">
+    <data>
+        <instance id="postgresDSDc"
+                  class="com.company.first.entity.PostgresDS"
+                  view="pds-with-fl">
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="postgresDSDc">
+            <column width="250px">
+                <textField id="tablenameField" property="tablename"/>
+                <pickerField id="facadeLayerField" property="facadeLayer">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+                <checkBox id="inDataServicesField" property="inDataServices"/>
+                <textField id="defTransparencyField" property="defTransparency"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

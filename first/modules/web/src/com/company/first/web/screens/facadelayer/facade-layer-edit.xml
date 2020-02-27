@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.first.web.screens.facadelayer">
+    <data>
+        <instance id="facadeLayerDc"
+                  class="com.company.first.entity.FacadeLayer"
+                  view="_local">
+            <loader id=""/>
+        </instance>
+        <collection id="postgresDsesDc" class="com.company.first.entity.PostgresDS" view="_local">
+            <loader id="postgresDsesDl">
+                <query>
+                    <![CDATA[select e from first_PostgresDS e where e.facadeLayer = :facadeLayer]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="facadeLayerDc">
+            <column width="250px">
+                <textField id="identifierField" property="identifier"/>
+            </column>
+        </form>
+        <label value="DataSet's"/>
+        <groupBox width="320px" caption="DataSet's">
+            <table height="200px" width="300" dataContainer="postgresDsesDc">
+                <columns>
+                    <column id="tablename"/>
+                    <column id="inDataServices"/>
+                    <column id="defTransparency"/>
+                </columns>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

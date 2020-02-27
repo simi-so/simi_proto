@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="singleActorsTable"
+        messagesPack="ch.so.agi.simi.web.screens.singleactor">
+    <data readOnly="true">
+        <collection id="singleActorsDc"
+                    class="ch.so.agi.simi.entity.SingleActor"
+                    view="_local">
+            <loader id="singleActorsDl">
+                <query>
+                    <![CDATA[select e from simi_SingleActor e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="singleActorsTable"
+            spacing="true">
+        <groupTable id="singleActorsTable"
+                    width="100%"
+                    dataContainer="singleActorsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="identifier"/>
+                <column id="title"/>
+                <column id="inWGC"/>
+                <column id="remarks"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createPdsBtn" caption="* PDS ..." stylename="primary"/>
+                <button id="createFlBtn" caption="* FL ..." stylename="friendly"/>
+                <button id="editBtn" action="singleActorsTable.edit"/>
+                <button id="removeBtn" action="singleActorsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+        <textField caption="Filter auf Identifier (like 'xxx%'"/>
+        <filter id="filter"
+                applyTo="singleActorsTable"
+                dataLoader="singleActorsDl" property="identifier" >
+            <properties include=".*"/>
+        </filter>
+    </layout>
+</window>

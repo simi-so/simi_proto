@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="postgresDsesTable"
+        messagesPack="com.company.first.web.screens.postgresds">
+    <data readOnly="true">
+        <collection id="postgresDsesDc"
+                    class="com.company.first.entity.PostgresDS"
+                    view="pds-with-fl">
+            <loader id="postgresDsesDl">
+                <query>
+                    <![CDATA[select e from first_PostgresDS e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="postgresDsesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="postgresDsesTable"
+                dataLoader="postgresDsesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="postgresDsesTable"
+                    width="100%"
+                    dataContainer="postgresDsesDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="tablename"/>
+                <column id="facadeLayer"/>
+                <column id="inDataServices"/>
+                <column id="defTransparency"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="postgresDsesTable.create"/>
+                <button id="editBtn" action="postgresDsesTable.edit"/>
+                <button id="removeBtn" action="postgresDsesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>
