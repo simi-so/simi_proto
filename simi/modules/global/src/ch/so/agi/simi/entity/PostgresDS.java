@@ -1,5 +1,7 @@
 package ch.so.agi.simi.entity;
 
+import com.haulmont.chile.core.annotations.NamePattern;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -8,6 +10,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+@NamePattern("%s (PDS)|identifier")
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 @Table(name = "SIMI_POSTGRES_DS")
 @Entity(name = "simi_PostgresDS")

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
-        caption="msg://browseCaption"
+        caption="DataSet's und FacadeLayer (Liste)"
         focusComponent="singleActorsTable"
         messagesPack="ch.so.agi.simi.web.screens.singleactor">
     <data readOnly="true">
@@ -27,25 +27,18 @@
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="identifier"/>
-                <column id="title"/>
-                <column id="inWGC"/>
-                <column id="remarks"/>
+                <column id="identifier" caption="Identifier" width="500"/>
+                <column id="title" caption="Titel" width="800"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="createPdsBtn" caption="* PDS ..." stylename="primary"/>
-                <button id="createFlBtn" caption="* FL ..." stylename="friendly"/>
-                <button id="editBtn" action="singleActorsTable.edit"/>
-                <button id="removeBtn" action="singleActorsTable.remove"/>
+                <button id="createPdsBtn" caption="Postgres-DS neu erstellen" stylename="primary"/>
+                <button id="createFlBtn" caption="FacadeLayer neu erstellen" stylename="friendly"/>
+                <button id="editBtn" action="singleActorsTable.edit" caption="Eintrag editieren" stylename="primary"/>
+                <button id="removeBtn" action="singleActorsTable.remove" caption="Eintrag löschen" stylename="danger"/>
             </buttonsPanel>
         </groupTable>
-        <hbox id="lookupActions" spacing="true" visible="false">
-            <button action="lookupSelectAction"/>
-            <button action="lookupCancelAction"/>
-        </hbox>
-        <textField caption="Filter auf Identifier (like 'xxx%'"/>
         <filter id="filter"
                 applyTo="singleActorsTable"
                 dataLoader="singleActorsDl" property="identifier" >

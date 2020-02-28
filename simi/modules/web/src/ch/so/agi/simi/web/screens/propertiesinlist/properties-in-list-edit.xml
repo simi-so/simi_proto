@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="TOC-Eintrag editieren"
+        focusComponent="form"
+        messagesPack="ch.so.agi.simi.web.screens.propertiesinlist">
+    <data>
+        <instance id="propertiesInListDc"
+                  class="ch.so.agi.simi.entity.PropertiesInList"
+                  view="pil-with-ps-and-sa">
+            <loader/>
+        </instance>
+        <collection id="singleActorsDc" class="ch.so.agi.simi.entity.SingleActor" view="_minimal">
+            <loader id="singleActorsDl">
+                <query>
+                    <![CDATA[select e from simi_SingleActor e ]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="propertiesInListDc">
+            <column width="250px">
+                <lookupPickerField caption="Dataset oder Facadelayer" dataContainer="propertiesInListDc"
+                                   nullOptionVisible="false" required="true" property="singleactor"
+                                   optionsContainer="singleActorsDc">
+                    <actions>
+                        <action id="open" type="picker_open"/>
+                    </actions>
+                </lookupPickerField>
+                <checkBox id="visibleField" property="visible" caption="Sichtbar?"/>
+                <textField id="transparencyField" property="transparency" caption="Transparenz [%]"/>
+                <textField id="sortField" property="sort" caption="TOC Reihenfolge"/>
+                <pickerField id="productsetField" property="productset" visible="false">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

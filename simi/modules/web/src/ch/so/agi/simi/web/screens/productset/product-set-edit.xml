@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="Productset editieren"
+        focusComponent="form"
+        messagesPack="ch.so.agi.simi.web.screens.productset">
+    <data>
+        <instance id="productSetDc"
+                  class="ch.so.agi.simi.entity.ProductSet"
+                  view="ps-list-of-sa">
+            <loader/>
+            <collection id="singleActorListDc" property="singleActorList"/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="productSetDc">
+            <column width="250px">
+                <textField id="identifierField" property="identifier" caption="Identifier"/>
+                <textField id="titleField" property="title" caption="Titel"/>
+                <checkBox id="inWGCField" property="inWGC" caption="In WGC publiziert?"/>
+                <textArea id="remarksField" property="remarks" rows="5" caption="Bemerkungen intern"/>
+            </column>
+        </form>
+        <groupBox id="singleActorListBox" caption="Liste der DataSets und Facadelayer">
+            <table id="singleActorListTable" dataContainer="singleActorListDc" width="100%" height="200px">
+                <actions>
+                    <action id="create" type="create"/>
+                    <action id="edit" type="edit"/>
+                    <action id="remove" type="remove"/>
+                </actions>
+                <columns>
+                    <column id="singleactor"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="singleActorListTable.create" caption="Listeneintrag erstellen" stylename="primary"/>
+                    <button action="singleActorListTable.edit" caption="Listeneintrag editieren" stylename="primary"/>
+                    <button action="singleActorListTable.remove" caption="Listeneintrag löschen" stylename="danger"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose" caption="Speichern und schliessen" stylename="primary"/>
+            <button action="windowClose" caption="Schliessen ohne zu speichern" stylename="danger"/>
+        </hbox>
+    </layout>
+</window>

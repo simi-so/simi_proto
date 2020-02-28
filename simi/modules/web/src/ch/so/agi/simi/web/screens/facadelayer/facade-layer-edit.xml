@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
-        caption="msg://editorCaption"
+        caption="Facadelayer editieren"
         focusComponent="form"
         messagesPack="ch.so.agi.simi.web.screens.facadelayer">
     <data>
@@ -15,10 +15,10 @@
     <layout expand="editActions" spacing="true">
         <form id="form" dataContainer="facadeLayerDc">
             <column width="250px">
-                <textField id="identifierField" property="identifier"/>
-                <textField id="titleField" property="title"/>
-                <checkBox id="inWGCField" property="inWGC"/>
-                <textArea id="remarksField" property="remarks" rows="5"/>
+                <textField id="identifierField" property="identifier" caption="Identifier"/>
+                <textField id="titleField" property="title" caption="Titel"/>
+                <checkBox id="inWGCField" property="inWGC" caption="In WGC publiziert?"/>
+                <textArea id="remarksField" property="remarks" rows="5" caption="Bemerkungen intern"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

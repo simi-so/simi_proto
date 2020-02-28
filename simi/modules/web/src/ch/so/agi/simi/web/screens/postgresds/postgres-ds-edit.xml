@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
-        caption="msg://editorCaption"
+        caption="Postgres-DS editieren"
         focusComponent="form"
         messagesPack="ch.so.agi.simi.web.screens.postgresds">
     <data>
@@ -15,13 +15,13 @@
     <layout expand="editActions" spacing="true">
         <form id="form" dataContainer="postgresDSDc">
             <column width="250px">
-                <textField id="identifierField" property="identifier"/>
-                <textField id="titleField" property="title"/>
-                <textField id="tablenameField" property="tablename"/>
-                <checkBox id="inDataServicesField" property="inDataServices"/>
-                <checkBox id="inWGCField" property="inWGC"/>
-                <textField id="defTransparencyField" property="defTransparency"/>
-                <textArea id="remarksField" property="remarks" rows="5"/>
+                <textField id="identifierField" property="identifier" caption="Identifier"/>
+                <textField id="titleField" property="title" caption="Titel"/>
+                <textField id="tablenameField" property="tablename" caption="Name der DB-Tabelle"/>
+                <checkBox id="inDataServicesField" property="inDataServices" caption="In Datendiensten publiziert?"/>
+                <checkBox id="inWGCField" property="inWGC" caption="In WGC publiziert?"/>
+                <textField id="defTransparencyField" property="defTransparency" caption="Default Transparenz [%]"/>
+                <textArea id="remarksField" property="remarks" rows="5" caption="Bemerkungen intern"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

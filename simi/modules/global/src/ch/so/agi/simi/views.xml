@@ -2,4 +2,16 @@
 <views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
 
     <view entity="simi_FacadeLayer" name="facadeLayer-view" extends="_local"/>
+    <view entity="simi_ProductSet" name="ps-list-of-sa" extends="_local">
+        <property name="singleActorList" view="_minimal">
+            <property name="visible"/>
+            <property name="singleactor" view="_minimal"/>
+            <property name="sort"/>
+            <property name="transparency"/>
+        </property>
+    </view>
+    <view entity="simi_PropertiesInList" name="pil-with-ps-and-sa" extends="_local">
+        <property name="productset" view="_minimal"/>
+        <property name="singleactor" view="_minimal"/>
+    </view>
 </views>
