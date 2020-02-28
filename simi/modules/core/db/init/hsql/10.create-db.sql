@@ -13,6 +13,7 @@ create table SIMI_DATA_PRODUCT (
     IN_WGC boolean not null,
     TITLE varchar(255),
     REMARKS longvarchar,
+    IDENTIFIER varchar(255) not null,
     --
     primary key (ID)
 )^

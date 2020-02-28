@@ -2,6 +2,8 @@ package ch.so.agi.simi.entity;
 
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
+import com.haulmont.cuba.core.entity.annotation.CaseConversion;
+import com.haulmont.cuba.core.entity.annotation.ConversionType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -24,6 +26,19 @@ public class DataProduct extends StandardEntity {
     @Lob
     @Column(name = "REMARKS")
     protected String remarks;
+
+    @CaseConversion(type = ConversionType.LOWER)
+    @NotNull
+    @Column(name = "IDENTIFIER", nullable = false)
+    protected String identifier;
+
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
+    }
 
     public String getRemarks() {
         return remarks;
