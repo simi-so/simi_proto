@@ -7,9 +7,9 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-@Table(name = "SIMI_PROPERTIES_IN_LIST")
-@Entity(name = "simi_PropertiesInList")
-public class PropertiesInList extends StandardEntity {
+@Table(name = "SIMI_SINGLEACTOR_LIST_PROPERTIES")
+@Entity(name = "simi_SingleActorListPropertieS")
+public class SingleActorListProperties extends StandardEntity {
     private static final long serialVersionUID = -7843551911485193118L;
 
     @NotNull

@@ -1,0 +1,1 @@
+alter table simi_properties_in_list rename to SIMI_PROPERTIES_IN_LIST__U56790 ;

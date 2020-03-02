@@ -23,13 +23,13 @@ public class ProductSet extends DataProduct {
     @Composition
     @OnDelete(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "productset")
-    protected List<PropertiesInList> singleActorList;
+    protected List<SingleActorListProperties> singleActorList;
 
-    public List<PropertiesInList> getSingleActorList() {
+    public List<SingleActorListProperties> getSingleActorList() {
         return singleActorList;
     }
 
-    public void setSingleActorList(List<PropertiesInList> singleActorList) {
+    public void setSingleActorList(List<SingleActorListProperties> singleActorList) {
         this.singleActorList = singleActorList;
     }
 

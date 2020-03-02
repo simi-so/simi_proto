@@ -6,7 +6,8 @@
         <class>ch.so.agi.simi.entity.SingleActor</class>
         <class>ch.so.agi.simi.entity.FacadeLayer</class>
         <class>ch.so.agi.simi.entity.PostgresDS</class>
-        <class>ch.so.agi.simi.entity.PropertiesInList</class>
+        <class>ch.so.agi.simi.entity.SingleActorListProperties</class>
         <class>ch.so.agi.simi.entity.ProductSet</class>
+        <class>ch.so.agi.simi.entity.DatasetListProperties</class>
     </persistence-unit>
 </persistence>
