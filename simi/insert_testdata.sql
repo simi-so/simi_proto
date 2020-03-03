@@ -1,22 +1,21 @@
 
 /*
- * Skript für die initialisierung des Prototyps mit sinnvollen Testdaten für die Entitäten 
+ * Skript fuer die initialisierung des Prototyps mit sinnvollen Testdaten fuer die Entitaeten 
  * - Productset
  * - Facadelayer
  * - DataSet
  * 
- * ACHTUNG: Löscht alle vorheig enthaltenen Daten
+ * ACHTUNG: Loescht alle vorherig enthaltenen Daten
  * */
 
 
 -- delete statements
-DELETE FROM public.simi_dataset_list_properties; 
-DELETE FROM public.simi_singleactor_list_properties;
+DELETE FROM public.simi_dataset_list_properties;
+DELETE FROM public.simi_single_actor_list_properties;
 DELETE FROM public.simi_postgres_ds;
 DELETE FROM public.simi_single_actor;
 DELETE FROM public.simi_product_set;
 DELETE FROM public.simi_data_product;
-
 
 WITH 
 
@@ -36,7 +35,7 @@ ds_stfv_1 AS (
 	SELECT 	
 		uuid_generate_v4() AS id,
 		'ch.so.afu.gefahrenhinweiskarte_stfv.betriebe' AS identifier,
-		'Störfallverordnung - Betriebe' AS title,
+		'Stoerfallverordnung - Betriebe' AS title,
 		TRUE as in_wgc,
 		'lorem ipsum' as remarks,
 		'simi_PostgresDS' as dtype,
@@ -51,7 +50,7 @@ ds_stfv_2 AS (
 	SELECT 	
 		uuid_generate_v4() AS id,
 		'ch.so.afu.gefahrenhinweiskarte_stfv.eisenbahn' AS identifier,
-		'Störfallverordnung - Eisenbahn' AS title,
+		'Stoerfallverordnung - Eisenbahn' AS title,
 		TRUE as in_wgc,
 		'lorem ipsum' as remarks,
 		'simi_PostgresDS' as dtype,
@@ -66,7 +65,7 @@ ds_stfv_3 AS (
 	SELECT 	
 		uuid_generate_v4() AS id,
 		'ch.so.afu.gefahrenhinweiskarte_stfv.durchgangsstrassen' AS identifier,
-		'Störfallverordnung - Durchgangsstrassen' AS title,
+		'Stoerfallverordnung - Durchgangsstrassen' AS title,
 		TRUE as in_wgc,
 		'lorem ipsum' as remarks,
 		'simi_PostgresDS' as dtype,
@@ -81,7 +80,7 @@ ds_stfv_4 AS (
 	SELECT 	
 		uuid_generate_v4() AS id,
 		'ch.so.afu.gefahrenhinweiskarte_stfv.gasleitungen' AS identifier,
-		'Störfallverordnung - Gasleitungen' AS title,
+		'Stoerfallverordnung - Gasleitungen' AS title,
 		TRUE as in_wgc,
 		'lorem ipsum' as remarks,
 		'simi_PostgresDS' as dtype,
@@ -96,7 +95,7 @@ ds_stfv_5 AS (
 	SELECT 	
 		uuid_generate_v4() AS id,
 		'ch.so.afu.gefahrenhinweiskarte_stfv.nationalstrassen' AS identifier,
-		'Störfallverordnung - Nationalstrassen' AS title,
+		'Stoerfallverordnung - Nationalstrassen' AS title,
 		TRUE as in_wgc,
 		'lorem ipsum' as remarks,
 		'simi_PostgresDS' as dtype,
@@ -141,7 +140,7 @@ ds_agglo_3 AS (
 	SELECT 	
 		uuid_generate_v4() AS id,
 		'ch.so.arp.aggloprogramme.umsetzungsstand_flaeche' AS identifier,
-		'Umsetzungsstand Fläche (Aggloprogramme)' AS title,
+		'Umsetzungsstand Flaeche (Aggloprogramme)' AS title,
 		TRUE as in_wgc,
 		'lorem ipsum' as remarks,
 		'simi_PostgresDS' as dtype,
@@ -156,7 +155,7 @@ ds_agglo_4 AS (
 	SELECT 	
 		uuid_generate_v4() AS id,
 		'ch.so.arp.aggloprogramme.uebersicht' AS identifier,
-		'Agglomerationsprogramme-Übersicht' AS title,
+		'Agglomerationsprogramme-Uebersicht' AS title,
 		TRUE as in_wgc,
 		'lorem ipsum' as remarks,
 		'simi_PostgresDS' as dtype,
@@ -204,7 +203,7 @@ fl_stfv AS (
 	SELECT 	
 		uuid_generate_v4() AS id,
 		'ch.so.afu.gefahrenhinweiskarte_stfv' AS identifier,
-		'Störfallverordnung' AS title,
+		'Stoerfallverordnung' AS title,
 		TRUE as in_wgc,
 		'lorem ipsum' as remarks,
 		'simi_FacadeLayer' as dtype
@@ -220,7 +219,6 @@ fl AS (
 ),
 
 -- productset cte's
-
 ps_agglo AS (
 	SELECT 
 		uuid_generate_v4() AS id,
@@ -238,7 +236,6 @@ ps AS (
 ),
 
 -- dataset list properties cte's
-
 dslist_agglo_fs AS ( -- agglomerationsprogramme facadelayer. Also copying the meta attributes from the facadelayer
 	SELECT
 		id AS facadelayer_id,		
@@ -304,7 +301,6 @@ dslist AS (
 ),
 
 -- singleactor list properties
-
 salist_agglo_ps AS (
 	SELECT
 		id AS productset_id,	
@@ -324,7 +320,7 @@ salist_agglo_sa_ids AS (
 	SELECT id FROM fl WHERE identifier = 'ch.so.arp.aggloprogramme.umsetzungsstand'
 ),
 
-salist AS ( -- salist = salist_agglo, da es nur für as Aggloprogramm ein PS gibt
+salist AS ( -- salist = salist_agglo, da es nur fuer as Aggloprogramm ein PS gibt
 	SELECT
 		uuid_generate_v4() AS id,
 		id AS singleactor_id,
@@ -337,56 +333,52 @@ salist AS ( -- salist = salist_agglo, da es nur für as Aggloprogramm ein PS gib
 	CROSS JOIN salist_agglo_ps
 ),
 
--- Insert statements for the datasets into the tables of the inheritance tree 
- 
+-- Insert statements for the datasets into the tables of the inheritance tree  
 i_ds_pds AS (
-	INSERT INTO simi_postgres_ds(id, tablename, in_data_services, def_transparency)
+	INSERT INTO public.simi_postgres_ds(id, tablename, in_data_services, def_transparency)
 		SELECT id, tablename, in_data_services, def_transparency FROM ds
 ),
 
 i_ds_sa AS (
-	INSERT INTO simi_single_actor(id, identifier) 
+	INSERT INTO public.simi_single_actor(id, identifier) 
 		SELECT id, identifier FROM ds
 ),
 
 i_ds_dp AS (
-	INSERT INTO simi_data_product(id, in_wgc, title, remarks, version, created_by, create_ts, update_ts) 
+	INSERT INTO public.simi_data_product(id, in_wgc, title, remarks, version, created_by, create_ts, update_ts) 
 		SELECT id, in_wgc, title, remarks, version, created_by, create_ts, update_ts FROM ds
 ),
 
 -- Insert statements for the facadelayers into the tables of the inheritance tree 
-
 i_fl_fl AS (
-	INSERT INTO simi_facade_layer(id)
+	INSERT INTO public.simi_facade_layer(id)
 		SELECT id FROM fl
 ),
 
 i_fl_sa AS (
-	INSERT INTO simi_single_actor(id, identifier) 
+	INSERT INTO public.simi_single_actor(id, identifier) 
 		SELECT id, identifier FROM fl
 ),
 
 i_fl_dp AS (
-	INSERT INTO simi_data_product(id, in_wgc, title, remarks, version, created_by, create_ts, update_ts) 
+	INSERT INTO public.simi_data_product(id, in_wgc, title, remarks, version, created_by, create_ts, update_ts) 
 		SELECT id, in_wgc, title, remarks, version, created_by, create_ts, update_ts FROM fl
 ),
 
 -- Insert statements for the productsets into the tables of the inheritance tree 
-
 i_ps_ps AS (
-	INSERT INTO simi_product_set(id, identifier) 
+	INSERT INTO public.simi_product_set(id, identifier) 
 		SELECT id, identifier FROM ps
 ),
 
 i_ps_dp AS (
-	INSERT INTO simi_data_product(id, in_wgc, title, remarks, version, created_by, create_ts, update_ts) 
+	INSERT INTO public.simi_data_product(id, in_wgc, title, remarks, version, created_by, create_ts, update_ts) 
 		SELECT id, in_wgc, title, remarks, version, created_by, create_ts, update_ts FROM ps
 ),
 
 -- Insert statements for the dataset properties list
-
 i_dslist AS (
-	INSERT INTO simi_dataset_list_properties(id, facadelayer_id, dataset_id, visible, sort, transparency,
+	INSERT INTO public.simi_dataset_list_properties(id, facadelayer_id, dataset_id, visible, sort, transparency,
 			version, created_by, create_ts, update_ts)
 		SELECT id, facadelayer_id, dataset_id, visible, sort, transparency,
 			version, created_by, create_ts, update_ts
@@ -394,9 +386,8 @@ i_dslist AS (
 ),
 
 -- Insert statements for the singleactor properties list
-
 i_salist AS (
-	INSERT INTO simi_singleactor_list_properties(id, productset_id, singleactor_id, visible, sort, transparency,
+	INSERT INTO public.simi_single_actor_list_properties(id, productset_id, singleactor_id, visible, sort, transparency,
 			version, created_by, create_ts, update_ts)
 		SELECT id, productset_id, singleactor_id, visible, sort, transparency,
 			version, created_by, create_ts, update_ts

@@ -20,6 +20,7 @@ public class ProductSet extends DataProduct {
     @Column(name = "IDENTIFIER", nullable = false)
     protected String identifier;
 
+    @OrderBy("sort")
     @Composition
     @OnDelete(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "productset")

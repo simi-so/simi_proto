@@ -8,6 +8,12 @@ Questions
     * Pitfalls when using external job to clean up old deleted records?
 * Properties in list does not (no more) exists but is part of the menu. How to delete?
 * Why is the button style "friendly" once green and once blue?
+* Encountered strange behaviour when renaming an entity
+    * Recommended "best practice"? Create new entity and copy over the attributes?
+    * Relevance / background on serialVersionUID?
+    * Could no more login. Worked again after removing view pointing to no more existing entity --> Could that (really) have been the cause?
+* Can not see test data - I can't find what is wrong
+* Ways to have a column sorted by default
 
 Todos:
 * Implement TOC sort

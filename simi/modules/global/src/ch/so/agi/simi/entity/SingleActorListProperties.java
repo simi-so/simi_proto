@@ -7,10 +7,10 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-@Table(name = "SIMI_SINGLEACTOR_LIST_PROPERTIES")
-@Entity(name = "simi_SingleActorListPropertieS")
+@Table(name = "SIMI_SINGLE_ACTOR_LIST_PROPERTIES")
+@Entity(name = "simi_SingleActorListProperties")
 public class SingleActorListProperties extends StandardEntity {
-    private static final long serialVersionUID = -7843551911485193118L;
+    private static final long serialVersionUID = 8831469854854313072L;
 
     @NotNull
     @Column(name = "VISIBLE", nullable = false)

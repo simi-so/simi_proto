@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="ch.so.agi.simi.web.screens.singleactorlistproperties">
+    <data>
+        <instance id="singleActorListPropertiesDc"
+                  class="ch.so.agi.simi.entity.SingleActorListProperties"
+                  view="salist-with-ps-and-sa">
+            <loader/>
+        </instance>
+        <collection id="singleActorsDc" class="ch.so.agi.simi.entity.SingleActor">
+            <loader id="singleActorsDl">
+                <query>
+                    <![CDATA[select e from simi_SingleActor e ]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="singleActorListPropertiesDc">
+            <column width="250px">
+                <lookupPickerField caption="Dataset oder Facadelayer" dataContainer="singleActorListPropertiesDc"
+                                   nullOptionVisible="false" required="true" property="singleactor"
+                                   optionsContainer="singleActorsDc">
+                    <actions>
+                        <action id="open" type="picker_open"/>
+                    </actions>
+                </lookupPickerField>
+                <checkBox id="visibleField" property="visible" caption="Sichtbar?"/>
+                <textField id="sortField" property="sort" caption="Sortierindex"/>
+                <textField id="transparencyField" property="transparency" caption="Transparenz"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose" caption="Speichern und schliessen" stylename="primary"/>
+            <button action="windowClose" caption="Schliessen ohne zu speichern" stylename="danger"/>
+        </hbox>
+    </layout>
+</window>
