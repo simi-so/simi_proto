@@ -28,7 +28,7 @@ public class DatasetListProperties extends StandardEntity {
 
     @NotNull
     @Column(name = "SORT", nullable = false)
-    protected Integer sort = 0;
+    protected Integer sort = 999;
 
     @Max(100)
     @Min(0)

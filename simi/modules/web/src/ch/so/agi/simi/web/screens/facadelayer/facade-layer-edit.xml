@@ -6,7 +6,7 @@
     <data>
         <instance id="facadeLayerDc"
                   class="ch.so.agi.simi.entity.FacadeLayer"
-                  view="_local">
+                  view="fl-list-of-ds">
             <loader/>
             <collection id="dataSetListPropertiesDc" property="dataSetListProperties"/>
         </instance>
