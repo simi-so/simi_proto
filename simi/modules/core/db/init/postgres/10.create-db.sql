@@ -1,23 +1,3 @@
--- begin SIMI_DATASET_LIST_PROPERTIES
-create table SIMI_DATASET_LIST_PROPERTIES (
-    ID uuid,
-    VERSION integer not null,
-    CREATE_TS timestamp,
-    CREATED_BY varchar(50),
-    UPDATE_TS timestamp,
-    UPDATED_BY varchar(50),
-    DELETE_TS timestamp,
-    DELETED_BY varchar(50),
-    --
-    VISIBLE boolean not null,
-    FACADELAYER_ID uuid not null,
-    DATASET_ID uuid not null,
-    SORT integer not null,
-    TRANSPARENCY integer,
-    --
-    primary key (ID)
-)^
--- end SIMI_DATASET_LIST_PROPERTIES
 -- begin SIMI_DATA_PRODUCT
 create table SIMI_DATA_PRODUCT (
     ID uuid,
@@ -37,6 +17,26 @@ create table SIMI_DATA_PRODUCT (
     primary key (ID)
 )^
 -- end SIMI_DATA_PRODUCT
+-- begin SIMI_DATASET_LIST_PROPERTIES
+create table SIMI_DATASET_LIST_PROPERTIES (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    VISIBLE boolean not null,
+    SORT integer not null,
+    TRANSPARENCY integer,
+    --
+    FACADELAYER_ID uuid not null,
+    DATASET_ID uuid not null,
+    --
+    primary key (ID)
+)^
+-- end SIMI_DATASET_LIST_PROPERTIES
 -- begin SIMI_SINGLE_ACTOR_LIST_PROPERTIES
 create table SIMI_SINGLE_ACTOR_LIST_PROPERTIES (
     ID uuid,
@@ -47,12 +47,12 @@ create table SIMI_SINGLE_ACTOR_LIST_PROPERTIES (
     UPDATED_BY varchar(50),
     DELETE_TS timestamp,
     DELETED_BY varchar(50),
-    --
     VISIBLE boolean not null,
-    PRODUCTSET_ID uuid not null,
-    SINGLEACTOR_ID uuid not null,
     SORT integer not null,
     TRANSPARENCY integer,
+    --
+    PRODUCTSET_ID uuid not null,
+    SINGLEACTOR_ID uuid not null,
     --
     primary key (ID)
 )^
@@ -60,8 +60,6 @@ create table SIMI_SINGLE_ACTOR_LIST_PROPERTIES (
 -- begin SIMI_SINGLE_ACTOR
 create table SIMI_SINGLE_ACTOR (
     ID uuid,
-    --
-    IDENTIFIER text not null,
     --
     primary key (ID)
 )^

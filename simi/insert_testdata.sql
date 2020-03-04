@@ -25,7 +25,10 @@ meta AS (
 		1 AS "version",
 		'admin' AS created_by,
 		now() AS  create_ts, 
-		now() AS update_ts
+		now() AS update_ts,
+		'simi_FacadeLayer' AS dtype_fl,
+		'simi_PostgresDS' AS dtype_pds,
+		'simi_ProductSet' AS dtype_ps
 	FROM 
 		generate_series(1,1) 
 ),
@@ -345,8 +348,8 @@ i_ds_sa AS (
 ),
 
 i_ds_dp AS (
-	INSERT INTO public.simi_data_product(id, in_wgc, title, remarks, version, created_by, create_ts, update_ts) 
-		SELECT id, in_wgc, title, remarks, version, created_by, create_ts, update_ts FROM ds
+	INSERT INTO public.simi_data_product(id, in_wgc, title, remarks, version, created_by, create_ts, update_ts, dtype) 
+		SELECT id, in_wgc, title, remarks, version, created_by, create_ts, update_ts, dtype_pds FROM ds
 ),
 
 -- Insert statements for the facadelayers into the tables of the inheritance tree 
@@ -361,8 +364,8 @@ i_fl_sa AS (
 ),
 
 i_fl_dp AS (
-	INSERT INTO public.simi_data_product(id, in_wgc, title, remarks, version, created_by, create_ts, update_ts) 
-		SELECT id, in_wgc, title, remarks, version, created_by, create_ts, update_ts FROM fl
+	INSERT INTO public.simi_data_product(id, in_wgc, title, remarks, version, created_by, create_ts, update_ts, dtype) 
+		SELECT id, in_wgc, title, remarks, version, created_by, create_ts, update_ts, dtype_fl FROM fl
 ),
 
 -- Insert statements for the productsets into the tables of the inheritance tree 
@@ -372,8 +375,8 @@ i_ps_ps AS (
 ),
 
 i_ps_dp AS (
-	INSERT INTO public.simi_data_product(id, in_wgc, title, remarks, version, created_by, create_ts, update_ts) 
-		SELECT id, in_wgc, title, remarks, version, created_by, create_ts, update_ts FROM ps
+	INSERT INTO public.simi_data_product(id, in_wgc, title, remarks, version, created_by, create_ts, update_ts, dtype) 
+		SELECT id, in_wgc, title, remarks, version, created_by, create_ts, update_ts, dtype_ps FROM ps
 ),
 
 -- Insert statements for the dataset properties list
