@@ -32,14 +32,15 @@
                 </actions>
                 <columns>
                     <column id="singleactor" caption="Dataset oder Facadelayer" width="600"/>
-                    <column id="sort" editable="true" width="50" caption="Sort."/>
-                    <column id="visible" editable="true" caption="Sicht." width="50" sortable="false"/>
-                    <column id="transparency" caption="Trans. [%]" editable="true" sortable="false"/>
+                    <column id="sort" editable="true" width="80" caption="Sort."/>
+                    <column id="visible" editable="true" caption="Sicht." width="80" sortable="false"/>
+                    <column id="transparency" caption="Trans. [%]" editable="true" width="100" sortable="false"/>
                 </columns>
                 <buttonsPanel>
-                    <button action="singleActorListTable.create" caption="Listeneintrag erstellen" stylename="primary"/>
-                    <button action="singleActorListTable.edit" caption="Listeneintrag editieren" stylename="primary"/>
-                    <button action="singleActorListTable.remove" caption="Listeneintrag löschen" stylename="danger"/>
+                    <linkButton id="btnSortTable" caption="Neu sortieren"/>
+                    <linkButton action="singleActorListTable.create" caption="Listeneintrag erstellen"/>
+                    <linkButton action="singleActorListTable.edit" caption="Listeneintrag editieren"/>
+                    <linkButton action="singleActorListTable.remove" caption="Listeneintrag löschen"/>
                 </buttonsPanel>
             </table>
         </groupBox>

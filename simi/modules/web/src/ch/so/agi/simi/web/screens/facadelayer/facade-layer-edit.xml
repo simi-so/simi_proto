@@ -32,14 +32,15 @@
                 </actions>
                 <columns>
                     <column id="dataset" caption="Dataset" width="600"/>
-                    <column id="sort" editable="true" width="50" caption="Sort."/>
-                    <column id="visible" editable="true" caption="Sicht." width="50" sortable="false"/>
-                    <column id="transparency" caption="Trans. [%]" editable="true" sortable="false"/>
+                    <column id="sort" editable="true" width="80" caption="Sort."/>
+                    <column id="visible" editable="true" caption="Sicht." width="80" sortable="false"/>
+                    <column id="transparency" caption="Trans. [%]" editable="true" width="100" sortable="false"/>
                 </columns>
                 <buttonsPanel>
-                    <button action="dataSetListPropertiesTable.create" caption="Listeneintrag erstellen" stylename="primary"/>
-                    <button action="dataSetListPropertiesTable.edit" caption="Listeneintrag editieren" stylename="primary"/>
-                    <button action="dataSetListPropertiesTable.remove" caption="Listeneintrag löschen" stylename="danger"/>
+                    <linkButton id="btnSortTable" caption="Neu sortieren"/>
+                    <linkButton action="dataSetListPropertiesTable.create" caption="Listeneintrag erstellen"/>
+                    <linkButton action="dataSetListPropertiesTable.edit" caption="Listeneintrag editieren"/>
+                    <linkButton action="dataSetListPropertiesTable.remove" caption="Listeneintrag löschen"/>
                 </buttonsPanel>
             </table>
         </groupBox>
