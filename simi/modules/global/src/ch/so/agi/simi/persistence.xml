@@ -10,5 +10,6 @@
         <class>ch.so.agi.simi.entity.DatasetListProperties</class>
         <class>ch.so.agi.simi.entity.SingleActorListProperties</class>
         <class>ch.so.agi.simi.entity.DataProductStruct</class>
+        <class>ch.so.agi.simi.entity.TableOfContents</class>
     </persistence-unit>
 </persistence>

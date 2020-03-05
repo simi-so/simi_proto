@@ -18,8 +18,8 @@ public class SingleActorListProperties extends StandardEntity {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "PRODUCTSET_ID")
-    protected ProductSet productset;
+    @JoinColumn(name = "TABLE_OF_CONTENTS_ID")
+    protected TableOfContents tableOfContents;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -35,12 +35,12 @@ public class SingleActorListProperties extends StandardEntity {
     @Column(name = "TRANSPARENCY")
     protected Integer transparency = 100;
 
-    public ProductSet getProductset() {
-        return productset;
+    public TableOfContents getTableOfContents() {
+        return tableOfContents;
     }
 
-    public void setProductset(ProductSet productset) {
-        this.productset = productset;
+    public void setTableOfContents(TableOfContents tableOfContents) {
+        this.tableOfContents = tableOfContents;
     }
 
     public SingleActor getSingleactor() {

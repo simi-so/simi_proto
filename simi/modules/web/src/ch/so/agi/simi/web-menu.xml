@@ -3,5 +3,6 @@
     <menu id="application-simi" insertBefore="administration">
         <item screen="simi_SingleActor.browse"/>
         <item screen="simi_ProductSet.browse"/>
+        <item screen="simi_TableOfContents.browse"/>
     </menu>
 </menu-config>

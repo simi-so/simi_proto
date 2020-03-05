@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="tableOfContentsesTable"
+        messagesPack="ch.so.agi.simi.web.screens.tableofcontents">
+    <data readOnly="true">
+        <collection id="tableOfContentsesDc"
+                    class="ch.so.agi.simi.entity.TableOfContents"
+                    view="_local">
+            <loader id="tableOfContentsesDl">
+                <query>
+                    <![CDATA[select e from simi_TableOfContents e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="tableOfContentsesTable"
+            spacing="true">
+        <groupTable id="tableOfContentsesTable"
+                    width="100%"
+                    dataContainer="tableOfContentsesDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="identifier" width="500"/>
+                <column id="remarks" width="800"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="tableOfContentsesTable.create" caption="Neu erstellen" stylename="primary"/>
+                <button id="editBtn" action="tableOfContentsesTable.edit" caption="Editieren" stylename="primary"/>
+                <button id="removeBtn" action="tableOfContentsesTable.remove" caption="Löschen" stylename="danger"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+        <filter id="filter"
+                applyTo="tableOfContentsesTable"
+                dataLoader="tableOfContentsesDl">
+            <properties include=".*"/>
+        </filter>
+    </layout>
+</window>

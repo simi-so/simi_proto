@@ -9,15 +9,15 @@
         </property>
     </view>
     <view entity="simi_SingleActorListProperties" name="salist-with-ps-and-sa" extends="_local">
-        <property name="productset" view="_minimal"/>
+        <property name="tableOfContents" view="_minimal"/>
         <property name="singleactor" view="_minimal"/>
     </view>
     <view entity="simi_DatasetListProperties" name="dslist-with-fs-and-ds" extends="_local">
         <property name="facadelayer" view="_minimal"/>
         <property name="dataset" view="_minimal"/>
     </view>
-    <view entity="simi_ProductSet" name="ps-list-of-sa" extends="_local">
-        <property name="singleActorList" view="_minimal">
+    <view entity="simi_TableOfContents" name="toc-list-of-sa" extends="_local">
+        <property name="singleActorListProperties" view="_minimal">
             <property name="visible"/>
             <property name="singleactor" view="_minimal"/>
             <property name="sort"/>

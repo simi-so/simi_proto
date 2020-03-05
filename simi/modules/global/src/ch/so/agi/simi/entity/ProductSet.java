@@ -16,17 +16,4 @@ import java.util.List;
 public class ProductSet extends DataProductStruct {
     private static final long serialVersionUID = 7972395042416963924L;
 
-    @OrderBy("sort")
-    @Composition
-    @OnDelete(DeletePolicy.CASCADE)
-    @OneToMany(mappedBy = "productset")
-    protected List<SingleActorListProperties> singleActorList;
-
-    public List<SingleActorListProperties> getSingleActorList() {
-        return singleActorList;
-    }
-
-    public void setSingleActorList(List<SingleActorListProperties> singleActorList) {
-        this.singleActorList = singleActorList;
-    }
 }
