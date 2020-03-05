@@ -4,5 +4,7 @@
         <item screen="simi_SingleActor.browse"/>
         <item screen="simi_ProductSet.browse"/>
         <item screen="simi_TableOfContents.browse"/>
+        <item screen="simi_LayerGroup.browse"/>
+        <item screen="simi_Map.browse"/>
     </menu>
 </menu-config>

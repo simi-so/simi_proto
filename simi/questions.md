@@ -5,17 +5,40 @@ Questions:
 * How to create a screen for selecting 
 
 
+**Development**
 
-Erweiterung TableOfContents
-* TableOfContents -> SA
-    * SingleActorListProperties: 
-        * Mit TOC verknüpfen - analog zur Verknüpfung mit PS
-        * Verknüfpung auf PS lösen
-    * TOC
-        * Liste der Singleactors hinzufügen
-* PS -> TableOfContents
-    * TableOfContents erstellen
-    * PS - TableOfContentsLink - TOC. Mit ManyToOne links auf PS und TOC
-    * PS Screen umbauen, damit dieser eine Liste der TOC's anzeigt
-        * Alten Screen aufbewahren, da die SA-Liste im TOC Screen dann verwendet wird
-    * Edit Screens für salistprops und TocLink erstellen
+Hi Konstatin
+
+A few remarks concerning the development of the 
+* edit screens
+* file storage in the database
+
+**Edit screens**
+
+To make sure that the LayerGroup and Map entities are OK, I created browse and edit screens. 
+Extend them or throw them away - whatever works best for you.
+
+The app is configured to work with postgres. I use a docker image for that, config to build and run located in /simi/devdb
+
+**File storage in the database**
+
+I think this is a topic of general interest. If you think so too, could you discuss in the cuba team, 
+how the solution can be made understandable for the community? I can think of several ways:
+
+* Provide this as framework core feature in the future
+* Extending the guide https://www.cuba-platform.com/guides/working-with-images
+* Documentation containing sample code snipplets
+
+Could you inform me on your decision? If you think this is not of general interest - just solve it for us. Thanks.
+
+**Rough estimate of effort and finishdate**
+
+Could you post back for the two tasks above:
+* what is your estimate in hours
+* whether you can finish it until wednesday next week
+
+
+
+
+
+ 

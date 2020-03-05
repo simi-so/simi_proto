@@ -12,5 +12,7 @@
         <class>ch.so.agi.simi.entity.DataProductStruct</class>
         <class>ch.so.agi.simi.entity.TableOfContents</class>
         <class>ch.so.agi.simi.entity.TableOfContentsLink</class>
+        <class>ch.so.agi.simi.entity.LayerGroup</class>
+        <class>ch.so.agi.simi.entity.Map</class>
     </persistence-unit>
 </persistence>
