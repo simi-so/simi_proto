@@ -1,29 +1,40 @@
 package ch.so.agi.simi.entity;
 
-import com.haulmont.chile.core.annotations.NamePattern;
+import com.haulmont.chile.core.annotations.Composition;
 import com.haulmont.cuba.core.entity.StandardEntity;
+import com.haulmont.cuba.core.entity.annotation.OnDelete;
+import com.haulmont.cuba.core.global.DeletePolicy;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
-@DiscriminatorColumn(name = "DTYPE", discriminatorType = DiscriminatorType.STRING)
-@Inheritance(strategy = InheritanceType.JOINED)
-@NamePattern("%s|title")
-@Table(name = "SIMI_DATA_PRODUCT")
-@Entity(name = "simi_DataProduct")
-public class DataProduct extends StandardEntity {
-    private static final long serialVersionUID = -8689728264892585455L;
+@MappedSuperclass
+public class DataProductStruct extends StandardEntity {
+    private static final long serialVersionUID = -6791785436085208832L;
+
+    @NotNull
+    @Column(name = "IDENTIFIER", nullable = false)
+    protected String identifier;
+
+    @Column(name = "TITLE")
+    protected String title;
 
     @NotNull
     @Column(name = "IN_WGC", nullable = false)
     protected Boolean inWGC = false;
 
-    @Column(name = "TITLE")
-    protected String title;
-
     @Lob
     @Column(name = "REMARKS")
     protected String remarks;
+
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
+    }
 
     public String getRemarks() {
         return remarks;

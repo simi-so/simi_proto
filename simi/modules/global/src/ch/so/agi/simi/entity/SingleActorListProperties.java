@@ -35,20 +35,20 @@ public class SingleActorListProperties extends StandardEntity {
     @Column(name = "TRANSPARENCY")
     protected Integer transparency = 100;
 
-    public SingleActor getSingleactor() {
-        return singleactor;
-    }
-
-    public void setSingleactor(SingleActor singleactor) {
-        this.singleactor = singleactor;
-    }
-
     public ProductSet getProductset() {
         return productset;
     }
 
     public void setProductset(ProductSet productset) {
         this.productset = productset;
+    }
+
+    public SingleActor getSingleactor() {
+        return singleactor;
+    }
+
+    public void setSingleactor(SingleActor singleactor) {
+        this.singleactor = singleactor;
     }
 
     public Integer getTransparency() {

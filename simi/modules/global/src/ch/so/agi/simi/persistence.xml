@@ -2,12 +2,13 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
     <persistence-unit name="simi" transaction-type="RESOURCE_LOCAL">
 
-        <class>ch.so.agi.simi.entity.DataProduct</class>
+        <class>ch.so.agi.simi.entity.DataProduct_Old</class>
         <class>ch.so.agi.simi.entity.SingleActor</class>
         <class>ch.so.agi.simi.entity.FacadeLayer</class>
         <class>ch.so.agi.simi.entity.PostgresDS</class>
         <class>ch.so.agi.simi.entity.ProductSet</class>
         <class>ch.so.agi.simi.entity.DatasetListProperties</class>
         <class>ch.so.agi.simi.entity.SingleActorListProperties</class>
+        <class>ch.so.agi.simi.entity.DataProductStruct</class>
     </persistence-unit>
 </persistence>

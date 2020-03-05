@@ -1,0 +1,1 @@
+drop table if exists SIMI_DATA_PRODUCT__U74848 cascade ;
