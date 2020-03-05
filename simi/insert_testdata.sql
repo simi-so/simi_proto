@@ -12,10 +12,11 @@
 -- delete statements
 DELETE FROM public.simi_dataset_list_properties;
 DELETE FROM public.simi_single_actor_list_properties;
+DELETE FROM public.simi_table_of_contents_link;
+DELETE FROM public.simi_table_of_contents;
 DELETE FROM public.simi_postgres_ds;
 DELETE FROM public.simi_single_actor;
 DELETE FROM public.simi_product_set;
-DELETE FROM public.simi_data_product;
 
 WITH 
 
@@ -28,7 +29,8 @@ meta AS (
 		now() AS update_ts,
 		'simi_FacadeLayer' AS dtype_fl,
 		'simi_PostgresDS' AS dtype_pds,
-		'simi_ProductSet' AS dtype_ps
+		'simi_LayerGroup' AS dtype_lg,
+		'simi_map' AS dtype_map
 	FROM 
 		generate_series(1,1) 
 ),
@@ -221,8 +223,8 @@ fl AS (
 	SELECT fl_stfv.*, meta.* FROM fl_stfv, meta
 ),
 
--- productset cte's
-ps_agglo AS (
+-- layergroup cte's
+lg_agglo AS (
 	SELECT 
 		uuid_generate_v4() AS id,
 		'ch.so.arp.aggloprogramme' AS identifier,
@@ -234,8 +236,8 @@ ps_agglo AS (
 		generate_series(1,1)
 ),
 
-ps AS (
-	SELECT ps_agglo.*, meta.* FROM ps_agglo, meta
+lg AS (
+	SELECT lg_agglo.*, meta.* FROM lg_agglo, meta
 ),
 
 -- dataset list properties cte's
@@ -303,16 +305,25 @@ dslist AS (
 	SELECT * FROM dslist_agglo
 ),
 
--- singleactor list properties
-salist_agglo_ps AS (
-	SELECT
-		id AS productset_id,	
-		version, 
-		created_by, 
-		create_ts, 
-		update_ts
+-- table of contents with links to ps and sa
+-- properties
+toc AS (
+	SELECT 
+		uuid_generate_v4() AS id,
+		identifier,
+		remarks,
+		meta.*
 	FROM 
-		ps 
+		fl_agglo, meta
+),
+
+-- toc singleactor list properties
+salist_agglo_toc AS (
+	SELECT
+		id AS table_of_contents_id,
+		meta.*
+	FROM 
+		toc, meta 
 	WHERE 
 		identifier LIKE 'ch.so.arp.aggloprogramme%'
 ),
@@ -323,17 +334,53 @@ salist_agglo_sa_ids AS (
 	SELECT id FROM fl WHERE identifier = 'ch.so.arp.aggloprogramme.umsetzungsstand'
 ),
 
-salist AS ( -- salist = salist_agglo, da es nur fuer as Aggloprogramm ein PS gibt
+salinkslist AS ( -- salist = salist_agglo, da es nur fuer das Aggloprogramm eine LG gibt
 	SELECT
 		uuid_generate_v4() AS id,
 		id AS singleactor_id,
 		TRUE AS visible,
 		(ROW_NUMBER() OVER()) * 10 AS sort,
 		30 AS transparency,
-		salist_agglo_ps.*
+		salist_agglo_toc.*
 	FROM
 		salist_agglo_sa_ids
-	CROSS JOIN salist_agglo_ps
+	CROSS JOIN salist_agglo_toc
+),
+
+-- link lg to toc via toc link
+toclist_agglo_lg AS (
+	SELECT
+		id AS productset_id,	
+		version, 
+		created_by, 
+		create_ts, 
+		update_ts
+	FROM 
+		lg 
+	WHERE 
+		identifier LIKE 'ch.so.arp.aggloprogramme%'
+),
+
+toclist_agglo_toc AS (
+	SELECT
+		uuid_generate_v4() AS id,
+		id AS table_of_contents_id,
+		(ROW_NUMBER() OVER()) * 10 AS sort
+	FROM 
+		toc 
+	WHERE 
+		identifier LIKE 'ch.so.arp.aggloprogramme%'
+),
+
+toclinkslist AS ( 
+	SELECT
+		id,
+		table_of_contents_id,
+		sort,
+		toclist_agglo_lg.*
+	FROM
+		toclist_agglo_toc
+	CROSS JOIN toclist_agglo_lg
 ),
 
 -- Insert statements for the datasets into the tables of the inheritance tree  
@@ -343,13 +390,8 @@ i_ds_pds AS (
 ),
 
 i_ds_sa AS (
-	INSERT INTO public.simi_single_actor(id, identifier) 
-		SELECT id, identifier FROM ds
-),
-
-i_ds_dp AS (
-	INSERT INTO public.simi_data_product(id, in_wgc, title, remarks, version, created_by, create_ts, update_ts, dtype) 
-		SELECT id, in_wgc, title, remarks, version, created_by, create_ts, update_ts, dtype_pds FROM ds
+	INSERT INTO public.simi_single_actor(id, identifier, in_wgc, title, remarks, version, created_by, create_ts, update_ts, dtype) 
+		SELECT id, identifier, in_wgc, title, remarks, version, created_by, create_ts, update_ts, dtype_pds FROM ds
 ),
 
 -- Insert statements for the facadelayers into the tables of the inheritance tree 
@@ -359,24 +401,20 @@ i_fl_fl AS (
 ),
 
 i_fl_sa AS (
-	INSERT INTO public.simi_single_actor(id, identifier) 
-		SELECT id, identifier FROM fl
+	INSERT INTO public.simi_single_actor(id, identifier, in_wgc, title, remarks, version, created_by, create_ts, update_ts, dtype) 
+		SELECT id, identifier, in_wgc, title, remarks, version, created_by, create_ts, update_ts, dtype_fl FROM fl
 ),
 
-i_fl_dp AS (
-	INSERT INTO public.simi_data_product(id, in_wgc, title, remarks, version, created_by, create_ts, update_ts, dtype) 
-		SELECT id, in_wgc, title, remarks, version, created_by, create_ts, update_ts, dtype_fl FROM fl
+-- Insert statements for the productsets
+i_ps_lg AS (
+	INSERT INTO public.simi_product_set(id, identifier, in_wgc, title, remarks, version, created_by, create_ts, update_ts, dtype) 
+		SELECT id, identifier, in_wgc, title, remarks, version, created_by, create_ts, update_ts, dtype_lg FROM lg
 ),
 
--- Insert statements for the productsets into the tables of the inheritance tree 
-i_ps_ps AS (
-	INSERT INTO public.simi_product_set(id, identifier) 
-		SELECT id, identifier FROM ps
-),
-
-i_ps_dp AS (
-	INSERT INTO public.simi_data_product(id, in_wgc, title, remarks, version, created_by, create_ts, update_ts, dtype) 
-		SELECT id, in_wgc, title, remarks, version, created_by, create_ts, update_ts, dtype_ps FROM ps
+-- Insert statements into the toc
+i_toc AS (
+	INSERT INTO public.simi_table_of_contents(id, identifier, remarks, version, created_by, create_ts, update_ts) 
+		SELECT id, identifier, remarks, version, created_by, create_ts, update_ts FROM toc
 ),
 
 -- Insert statements for the dataset properties list
@@ -390,11 +428,20 @@ i_dslist AS (
 
 -- Insert statements for the singleactor properties list
 i_salist AS (
-	INSERT INTO public.simi_single_actor_list_properties(id, productset_id, singleactor_id, visible, sort, transparency,
+	INSERT INTO public.simi_single_actor_list_properties(id, table_of_contents_id, singleactor_id, visible, sort, transparency,
 			version, created_by, create_ts, update_ts)
-		SELECT id, productset_id, singleactor_id, visible, sort, transparency,
+		SELECT id, table_of_contents_id, singleactor_id, visible, sort, transparency,
 			version, created_by, create_ts, update_ts
-		FROM salist
+		FROM salinkslist
+),
+
+-- Insert statements for the toc link list
+i_toclinkslist AS (
+	INSERT INTO public.simi_table_of_contents_link(id, productset_id, table_of_contents_id, sort,
+			version, created_by, create_ts, update_ts)
+		SELECT id, productset_id, table_of_contents_id, sort,
+			version, created_by, create_ts, update_ts
+		FROM toclinkslist
 )
 
 
@@ -402,9 +449,14 @@ SELECT count(*) AS insert_count, 'PostgresDS' as entity FROM ds
 UNION ALL 
 SELECT count(*) AS insert_count, 'Facadelayer' as entity FROM fl
 UNION ALL 
-SELECT count(*) AS insert_count, 'ProductSet' as entity FROM ps
+SELECT count(*) AS insert_count, 'LayerGroup' as entity FROM lg
+UNION ALL 
+SELECT count(*) AS insert_count, 'TableOfContents' as entity FROM toc
 UNION ALL 
 SELECT count(*) AS insert_count, 'DatasetListProperties' as entity FROM dslist
 UNION ALL 
-SELECT count(*) AS insert_count, 'SingleActorListProperties' as entity FROM salist
+SELECT count(*) AS insert_count, 'SingleActorListProperties' as entity FROM salinkslist
+UNION ALL 
+SELECT count(*) AS insert_count, 'TableOfContentsLink' as entity FROM toclinkslist
 ;
+
