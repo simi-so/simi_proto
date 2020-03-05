@@ -18,3 +18,4 @@ Erweiterung TableOfContents
     * PS - TableOfContentsLink - TOC. Mit ManyToOne links auf PS und TOC
     * PS Screen umbauen, damit dieser eine Liste der TOC's anzeigt
         * Alten Screen aufbewahren, da die SA-Liste im TOC Screen dann verwendet wird
+    * Edit Screens für salistprops und TocLink erstellen

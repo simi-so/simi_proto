@@ -16,4 +16,16 @@ import java.util.List;
 public class ProductSet extends DataProductStruct {
     private static final long serialVersionUID = 7972395042416963924L;
 
+    @Composition
+    @OnDelete(DeletePolicy.CASCADE)
+    @OneToMany(mappedBy = "productset")
+    protected List<TableOfContentsLink> tableOfContentsLinkList;
+
+    public List<TableOfContentsLink> getTableOfContentsLinkList() {
+        return tableOfContentsLinkList;
+    }
+
+    public void setTableOfContentsLinkList(List<TableOfContentsLink> tableOfContentsLink) {
+        this.tableOfContentsLinkList = tableOfContentsLink;
+    }
 }

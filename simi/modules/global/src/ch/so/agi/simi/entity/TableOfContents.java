@@ -1,6 +1,7 @@
 package ch.so.agi.simi.entity;
 
 import com.haulmont.chile.core.annotations.Composition;
+import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.CaseConversion;
 import com.haulmont.cuba.core.entity.annotation.ConversionType;
@@ -11,6 +12,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+@NamePattern("%s (TOC)|identifier")
 @Table(name = "SIMI_TABLE_OF_CONTENTS")
 @Entity(name = "simi_TableOfContents")
 public class TableOfContents extends StandardEntity {
