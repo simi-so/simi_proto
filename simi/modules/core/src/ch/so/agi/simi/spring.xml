@@ -5,4 +5,7 @@
     <!-- Annotation-based beans -->
     <context:component-scan base-package="ch.so.agi.simi"/>
 
+    <!-- file storage impl -->
+    <bean id="cuba_FileStorage" class="ch.so.agi.simi.core.DbFileStorage"/>
+
 </beans>
