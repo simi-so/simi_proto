@@ -18,11 +18,6 @@
                 width="800"/>
     <layout expand="layerGroupsTable"
             spacing="true">
-        <filter id="filter"
-                applyTo="layerGroupsTable"
-                dataLoader="layerGroupsDl">
-            <properties include=".*"/>
-        </filter>
         <groupTable id="layerGroupsTable"
                     width="100%"
                     dataContainer="layerGroupsDc">
@@ -32,22 +27,21 @@
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="identifier"/>
-                <column id="title"/>
-                <column id="inWGC"/>
-                <column id="remarks"/>
+                <column id="identifier" caption="Identifier" width="500"/>
+                <column id="title" caption="Titel" width="800"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="createBtn" action="layerGroupsTable.create"/>
-                <button id="editBtn" action="layerGroupsTable.edit"/>
-                <button id="removeBtn" action="layerGroupsTable.remove"/>
+                <button id="createBtn" action="layerGroupsTable.create" caption="Neu erstellen" stylename="primary"/>
+                <button id="editBtn" action="layerGroupsTable.edit" caption="Editieren" stylename="primary"/>
+                <button id="removeBtn" action="layerGroupsTable.remove" caption="Löschen" stylename="danger"/>
             </buttonsPanel>
         </groupTable>
-        <hbox id="lookupActions" spacing="true" visible="false">
-            <button action="lookupSelectAction"/>
-            <button action="lookupCancelAction"/>
-        </hbox>
+        <filter id="filter"
+                applyTo="layerGroupsTable"
+                dataLoader="layerGroupsDl">
+            <properties include=".*"/>
+        </filter>
     </layout>
 </window>

@@ -16,8 +16,8 @@
     <layout expand="editActions" spacing="true">
         <form id="form" dataContainer="tableOfContentsDc">
             <column width="250px">
-                <textField id="identifierField" property="identifier"/>
-                <textArea id="remarksField" property="remarks" rows="5"/>
+                <textField id="identifierField" property="identifier" caption="Identifier"/>
+                <textArea id="remarksField" property="remarks" rows="5" caption="Bemerkungen intern"/>
             </column>
         </form>
         <groupBox id="singleActorListPropertiesBox" caption="Liste der DataSets und Facadelayer">

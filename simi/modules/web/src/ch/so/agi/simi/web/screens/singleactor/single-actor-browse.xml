@@ -38,8 +38,10 @@
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="identifier" caption="Identifier" width="500"/>
-                <column id="title" caption="Titel" width="800"/>
+                <column id="identifier"/>
+                <column id="title"/>
+                <column id="inWGC"/>
+                <column id="remarks"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

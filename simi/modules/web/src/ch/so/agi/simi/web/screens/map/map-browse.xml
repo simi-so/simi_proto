@@ -18,11 +18,6 @@
                 width="800"/>
     <layout expand="mapsTable"
             spacing="true">
-        <filter id="filter"
-                applyTo="mapsTable"
-                dataLoader="mapsDl">
-            <properties include=".*"/>
-        </filter>
         <groupTable id="mapsTable"
                     width="100%"
                     dataContainer="mapsDc">
@@ -32,23 +27,21 @@
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="identifier"/>
-                <column id="title"/>
-                <column id="inWGC"/>
-                <column id="remarks"/>
-                <column id="foreground"/>
+                <column id="identifier" caption="Identifier" width="500"/>
+                <column id="title" caption="Titel" width="800"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="createBtn" action="mapsTable.create"/>
-                <button id="editBtn" action="mapsTable.edit"/>
-                <button id="removeBtn" action="mapsTable.remove"/>
+                <button id="createBtn" action="mapsTable.create" caption="Neu erstellen" stylename="primary"/>
+                <button id="editBtn" action="mapsTable.edit" caption="Editieren" stylename="primary"/>
+                <button id="removeBtn" action="mapsTable.remove" caption="Löschen" stylename="danger"/>
             </buttonsPanel>
         </groupTable>
-        <hbox id="lookupActions" spacing="true" visible="false">
-            <button action="lookupSelectAction"/>
-            <button action="lookupCancelAction"/>
-        </hbox>
+        <filter id="filter"
+                applyTo="mapsTable"
+                dataLoader="mapsDl">
+            <properties include=".*"/>
+        </filter>
     </layout>
 </window>

@@ -6,25 +6,45 @@
     <data>
         <instance id="mapDc"
                   class="ch.so.agi.simi.entity.Map"
-                  view="_local">
+                  view="map-list-of-toc">
             <loader/>
+            <collection id="tableOfContentsLinkListDc" property="tableOfContentsLinkList"/>
         </instance>
     </data>
-    <dialogMode height="600"
-                width="800"/>
+    <dialogMode height="600" width="800"/>
     <layout expand="editActions" spacing="true">
         <form id="form" dataContainer="mapDc">
             <column width="250px">
-                <textField id="identifierField" property="identifier"/>
-                <textField id="titleField" property="title"/>
-                <checkBox id="inWGCField" property="inWGC"/>
-                <textArea id="remarksField" property="remarks" rows="5"/>
-                <checkBox id="foregroundField" property="foreground"/>
+                <textField id="identifierField" property="identifier" caption="Identifier"/>
+                <textField id="titleField" property="title" caption="Titel"/>
+                <checkBox id="inWGCField" property="inWGC"  caption="In WGC publiziert?"/>
+                <textArea id="remarksField" property="remarks" rows="5"  caption="Bemerkungen intern"/>
             </column>
         </form>
+        <groupBox id="tableOfContentsLinkListBox" caption="Liste der TOC's">
+            <table id="tableOfContentsLinkListTable" dataContainer="tableOfContentsLinkListDc" width="100%" height="200px"
+                   editable="true">
+                <actions>
+                    <action id="create" type="create"/>
+                    <action id="edit" type="edit"/>
+                    <action id="remove" type="remove"/>
+                </actions>
+                <columns>
+                    <column id="tableOfContents" caption="TOC Identifier" width="600"/>
+                    <column id="sort" editable="true" width="80" caption="Sort."/>
+                </columns>
+                <buttonsPanel>
+                    <linkButton id="btnSortTable" caption="Neu sortieren"/>
+                    <linkButton action="tableOfContentsLinkListTable.create" caption="Listeneintrag erstellen"/>
+                    <linkButton action="tableOfContentsLinkListTable.edit" caption="Listeneintrag editieren"/>
+                    <linkButton action="tableOfContentsLinkListTable.remove" caption="Listeneintrag löschen"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
         <hbox id="editActions" spacing="true">
-            <button action="windowCommitAndClose"/>
-            <button action="windowClose"/>
+            <button action="windowCommitAndClose" caption="Speichern und schliessen" stylename="primary"/>
+            <button action="windowClose" caption="Schliessen ohne zu speichern" stylename="danger"/>
         </hbox>
     </layout>
 </window>
+

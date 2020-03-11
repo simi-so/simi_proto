@@ -14,5 +14,6 @@
         <class>ch.so.agi.simi.entity.TableOfContentsLink</class>
         <class>ch.so.agi.simi.entity.LayerGroup</class>
         <class>ch.so.agi.simi.entity.Map</class>
+        <class>ch.so.agi.simi.entity.FileContent</class>
     </persistence-unit>
 </persistence>
