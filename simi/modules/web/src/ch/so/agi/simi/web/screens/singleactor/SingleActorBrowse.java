@@ -55,7 +55,7 @@ public class SingleActorBrowse extends StandardLookup<SingleActor> {
 
     @Subscribe
     public void onAfterShow(AfterShowEvent event) {
-        singleActorsTable.sort("identifier", Table.SortDirection.ASCENDING);
+        singleActorsTable.sort("fullIdentifier", Table.SortDirection.ASCENDING);
     }
 
     @Subscribe("btnQuickFilter")

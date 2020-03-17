@@ -42,4 +42,7 @@
             <property name="sort"/>
         </property>
     </view>
+    <view entity="simi_SingleActor" name="singleActor-browse" extends="_local">
+        <property name="fullIdentifier"/>
+    </view>
 </views>

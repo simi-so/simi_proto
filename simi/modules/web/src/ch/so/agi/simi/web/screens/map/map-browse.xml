@@ -27,7 +27,7 @@
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="identifier" caption="Identifier" width="500"/>
+                <column id="fullIdentifier" caption="Identifier" width="500"/>
                 <column id="title" caption="Titel" width="800"/>
             </columns>
             <rowsCount/>
